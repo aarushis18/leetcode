@@ -1,16 +1,18 @@
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        # the keys are the complements, the values are the indices
-        
-        sums = {}
+        sums = {} # complement, index
 
-        for index, num in enumerate(nums):
-            complement = target - num
+        for index, x in enumerate(nums):
+            diff = target - x
 
-            if complement in sums:
-                return [sums[complement], index]
+            if diff in sums.keys():
+                return [sums[diff], index]
             
-            sums[num] = index
+            sums[x] = index
+        
+
+        
+
 
 
         
