@@ -1,14 +1,11 @@
 class Solution:
     def containsDuplicate(self, nums: List[int]) -> bool:
-        unique_nums = set() # using a set since we only want each value in there once
-
-        for num in nums:
-            if num in unique_nums:
+        nums.sort()
+        for ind, x in enumerate(nums[:-1]):
+            if nums[ind] == nums[ind + 1]:
                 return True
-
-            unique_nums.add(num)
         
         return False
 
-        # O(N) for time complexity since we go through each value in nums once
-        # O(N) for memory since we create a hash set with values from nums
+        # O(N) time complexity due to iterating through every value in nums (at worst)
+        # O(1) space complexity
