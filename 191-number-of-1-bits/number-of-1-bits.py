@@ -1,14 +1,14 @@
 class Solution:
     def hammingWeight(self, n: int) -> int:
-        c = 0
+        count = 0
+
+        for i in range(32):
+            if (n >> i) & 1:
+                count += 1
         
-        while(n):
-            if (n & 1):
-                c += 1
-                
-            n = n >> 1
-            
-        return c  
-        
-        
+        return count
+
+        # O(1) time complexity since we will always only iterate through 32 bits at most
+        # O(1) space complexity since it remains constant regardless of the number of bits
+
         
