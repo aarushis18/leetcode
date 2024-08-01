@@ -27,5 +27,7 @@ class Solution:
         else:
             return False
 
+    # Space Complexity: O(N) since the stack could grow as large as the input string is
+    # Time Complexity: O(N) since we iterate through each value in the input string
 
 
