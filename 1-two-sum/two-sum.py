@@ -1,18 +1,11 @@
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        sums = {} # complement, index
+        sums = {}
+        for i, j in enumerate(nums):
+            difference = target - j
+            if difference not in sums:
+                sums[j] = i
+            else:
+                return [sums[difference], i]
 
-        for index, x in enumerate(nums):
-            diff = target - x
-
-            if diff in sums.keys():
-                return [sums[diff], index]
             
-            sums[x] = index
-        
-
-        
-
-
-
-        
