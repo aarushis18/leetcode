@@ -1,18 +1,17 @@
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
-        freq = {}
-        for num in nums:
-            if num not in freq:
-                freq[num] = 1
-            else:
-                freq[num] += 1
-        
-        i = 0
-        final = []
+        count = {}
+        for num in nums:                           # ❶ build freq map
+            count[num] = count.get(num, 0) + 1
 
-        for _ in range(k):
-            most_freq = max(freq, key=freq.get)
-            final.append(most_freq)
-            del freq[most_freq]
+        # --- bucket array indexed by frequency ---
+        buckets = [[] for _ in range(len(nums) + 1)]
+        for num, c in count.items():               # ❷ fill buckets
+            buckets[c].append(num)
 
-        return final
+        res = []
+        for freq in range(len(buckets) - 1, 0, -1):
+            for num in buckets[freq]:
+                res.append(num)
+                if len(res) == k:                  # stop early
+                    return res
