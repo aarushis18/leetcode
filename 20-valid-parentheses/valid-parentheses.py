@@ -1,33 +1,13 @@
 class Solution:
     def isValid(self, s: str) -> bool:
+        parens = {'(':')', '{':'}','[':']'} # add a dict of possible pairs
+
         stack = []
 
-        for p in s:
-            if len(stack) == 0:
-                stack.append(p)
-                
-            elif p in '{[(':
-                stack.append(p)
-
-            elif p in '}])':
-                if stack[-1] == '(' and p == ')':
-                    stack.pop()
-                elif stack[-1] == '{' and p == '}':
-                    stack.pop()
-                elif stack[-1] == '[' and p == ']':
-                    stack.pop()
-                else:
-                    return False
-
-            else:
+        for par in s:
+            if par in parens:
+                stack.append(par)
+            elif len(stack) == 0 or parens[stack.pop()] != par:
                 return False
-            
-        if len(stack) == 0:
-            return True
-        else:
-            return False
-
-    # Space Complexity: O(N) since the stack could grow as large as the input string is
-    # Time Complexity: O(N) since we iterate through each value in the input string
-
-
+        
+        return len(stack) == 0
