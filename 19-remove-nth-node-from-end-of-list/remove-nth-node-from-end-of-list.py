@@ -6,9 +6,10 @@
 class Solution:
     def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
         dummy = ListNode(0, head)
-        fast = slow = dummy
+        fast = head
+        slow = dummy
 
-        for _ in range(n + 1):
+        for _ in range(n):
             fast = fast.next
 
         # we want slow to catch up to slow
@@ -19,19 +20,3 @@ class Solution:
         slow.next = slow.next.next # delete node
 
         return dummy.next
-
-
-
-        # while curr:
-        #     count += 1
-        #     curr = curr.next
-
-        # temp = ListNode(0, head)
-        # curr = temp
-
-        # for _ in range(count - n):
-        #     curr = curr.next
-
-        # curr.next = curr.next.next
-
-        # return temp.next
