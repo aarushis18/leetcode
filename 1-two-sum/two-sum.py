@@ -1,9 +1,12 @@
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        seen = {}
+        dictionary = {}
+
         for i, j in enumerate(nums):
-            complement = target - j  
-            if complement in seen:    
-                return [seen[complement], i]
-            seen[j] = i
- 
+            difference = target - j
+
+            if difference in dictionary:
+                return [ dictionary.get(difference), i]
+            else:
+                dictionary[j] = i
+            
